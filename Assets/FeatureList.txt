@@ -1,0 +1,23 @@
+Make sound effect list and request sounds
+
+Add and test spawner progress feature : 
+	Spawners deaths are saved
+	Spawners drop a key item on death that player must collect and bring back to the start of level
+	Player drops items on death
+	
+Add limited numbers of ships (lives)
+
+Implement tank ship
+
+Implement final boss
+
+Add method to create new ships
+	Enemy drop scrap?
+
+Tutorial level
+
+Some minor characters/text/flavor shit idk something
+
+Credits
+
+
