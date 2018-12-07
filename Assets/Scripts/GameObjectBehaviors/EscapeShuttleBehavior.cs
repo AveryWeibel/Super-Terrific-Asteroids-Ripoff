@@ -7,6 +7,24 @@ public class EscapeShuttleBehavior : MonoBehaviour {
 
     public TMP_Text prompt;
     public static bool playerInRange;
+    public ParticleSystem guideTrail;
+
+    private void FixedUpdate()
+    {
+        if (GameManager.completedLevels[GameManager.curLevel - 1] == true)
+        {
+
+            if (guideTrail.gameObject.activeSelf == false) {
+                guideTrail.gameObject.SetActive(true);
+            }
+
+            guideTrail.transform.position = Vector3.MoveTowards(guideTrail.transform.position, transform.position, .5f);
+
+            if (Vector3.Distance(guideTrail.transform.position, transform.position) < .5f) {
+                guideTrail.transform.position = GameManager.player.transform.position;
+            }
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -19,7 +37,10 @@ public class EscapeShuttleBehavior : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
 
-
+                    if (GameManager.LevelCompleteScreenObj.activeSelf)
+                    {
+                        GameManager.LevelCompleteScreenObj.SetActive(false); //Toggles level complete screen
+                    }
 
                     GameManager.LevelComplete();
 

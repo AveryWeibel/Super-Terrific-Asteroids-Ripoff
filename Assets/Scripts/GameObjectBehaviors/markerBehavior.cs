@@ -8,6 +8,7 @@ public class markerBehavior : MonoBehaviour {
     public GameObject myLevel;
     public GameObject myLaunchpad;
     public TMP_Text myText;
+    public TMP_Text myPrompt;
     private GameObject rocket;
 
     private void Start()
@@ -28,8 +29,17 @@ public class markerBehavior : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (myPrompt.IsActive() == false)
+        {
+            myPrompt.gameObject.SetActive(true);
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
+
         if (other.tag == "Player" && Input.GetKeyDown(KeyCode.Space) && GameManager.onShuttle) {
             GameManager.curLevel = myLevel.GetComponent<LevelBehavior>().thisLevel;
             Debug.Log(GameManager.curLevel);
@@ -39,5 +49,12 @@ public class markerBehavior : MonoBehaviour {
             transform.parent.gameObject.SetActive(false);
             GameManager.onShuttle = false;
         } //If player presses space nearby
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (myPrompt.IsActive() == true)
+        {
+            myPrompt.gameObject.SetActive(false);
+        }
     }
 }

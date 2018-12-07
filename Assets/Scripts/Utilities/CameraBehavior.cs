@@ -30,7 +30,7 @@ public class CameraBehavior : MonoBehaviour {
             transform.Translate(0, 0, -mouseScrollSpeed);
         }*/
         //}
-        if (player != null && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0)) {
+        if (player != null && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) {
             transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), followPlayerSpeed);
         }
     }

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0)) { //Makes sure we are in the main scene before proceeding
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) { //Makes sure we are in the main scene before proceeding
 
             markers = GameObject.Find("Markers"); //Gets the markers gameObject, because it is active at launch, turn it off
             if (markers != null && markers.activeSelf)
@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour {
     {
         completedLevels[curLevel - 1] = true;
         levels[curLevel - 1].GetComponent<LevelBehavior>().complete = true;
-        LevelCompleteScreenObj.SetActive(!LevelCompleteScreenObj.activeSelf); //Toggles level complete screen
     }
 
     //Resets game at start of current level
@@ -132,6 +131,10 @@ public class GameManager : MonoBehaviour {
                 if (spawnersInScene <= 0)
                 {
                     LevelComplete();
+                    if (!LevelCompleteScreenObj.activeSelf)
+                    {
+                        LevelCompleteScreenObj.SetActive(true); //Toggles level complete screen
+                    }
                 }
             }
         }
@@ -202,14 +205,14 @@ public class GameManager : MonoBehaviour {
 
     public void startGame() {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         //StartCoroutine("launchGame");
     }
 
     public void toMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     /*IEnumerator launchGame() {

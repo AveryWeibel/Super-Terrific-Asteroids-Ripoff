@@ -41,3 +41,6 @@ Assets/StreamingAssets/crashlytics-build.properties
 
 # Substance painter files
 *.spp
+
+# Don't upload my builds
+Exports/
