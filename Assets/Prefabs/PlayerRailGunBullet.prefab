@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114889980148779890}
   - component: {fileID: 65374798710496652}
   m_Layer: 0
-  m_Name: PlayerShotgunBullet
+  m_Name: PlayerRailGunBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4523995375071634
 Transform:
   m_ObjectHideFlags: 1
@@ -97,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 1114265686758792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0986251, y: 0.47, z: 0.25273308}
+  m_LocalScale: {x: -3.832362, y: 3.0537062, z: 1.5745718}
   m_Children:
   - {fileID: 4622801277693624}
   - {fileID: 4523995375071634}
@@ -119,7 +119,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c7e3862199b76fa49872fa4b38824feb, type: 2}
+  - {fileID: 2100000, guid: 390c648ef34e10b4c8205e81700cc3da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,9 +183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prideBullet: 0
   playerBullet: 1
-  piercing: 0
-  speed: 0.82
-  destroyTime: 0.42
+  piercing: 1
+  speed: 1.75
+  destroyTime: 0.57
   startRotation: {x: 0, y: 0, z: 0}
   prideColors:
   - {r: 0, g: 0, b: 0, a: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
-  burst: {fileID: 198419039460616694, guid: e7a67a6e27b22614f85342892342c408, type: 2}
+  burst: {fileID: 198419039460616694, guid: d3400e66e291db84bafde3194179f022, type: 2}
 --- !u!198 &198674438999597376
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -382,7 +382,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.13762355, g: 1, b: 0, a: 1}
+      maxColor: {r: 0.96933126, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

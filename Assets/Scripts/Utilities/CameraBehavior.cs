@@ -20,16 +20,6 @@ public class CameraBehavior : MonoBehaviour {
             player = GameManager.player;
         }
 
-        //if (GameManager.onShuttle)
-        //{
-        /*if (Input.GetAxis("Mouse ScrollWheel") > 0 && Vector3.Distance(player.transform.position, transform.position) > 30)
-        {
-            transform.Translate(0, 0, mouseScrollSpeed);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && Vector3.Distance(player.transform.position, transform.position) < 100) {
-            transform.Translate(0, 0, -mouseScrollSpeed);
-        }*/
-        //}
         if (player != null && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) {
             transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), followPlayerSpeed);
         }

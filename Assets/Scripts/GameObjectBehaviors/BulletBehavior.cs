@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class BulletBehavior : MonoBehaviour {
 
     public bool prideBullet;
+    public bool playerBullet;
+    public bool piercing;
     public float speed;
     public float destroyTime = 2f;
     public Vector3 startRotation;
@@ -34,8 +36,23 @@ public class BulletBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player") {
-            Instantiate(burst, transform.position, transform.rotation, null);
+        AudioPlayer.lasHit.Play();
+        if (playerBullet)
+        {
+            if (other.tag != "Player" && !piercing)
+            {
+                destroyThis();
+            }
+        }
+        else {
+            if (other.tag != "Enemy" && !piercing)
+            {
+                destroyThis();
+            }
+        }
+
+        if (other.tag == "LaserWall") {
+            destroyThis();
         }
     }
 }

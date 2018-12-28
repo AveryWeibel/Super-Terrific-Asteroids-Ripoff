@@ -54,10 +54,10 @@ public class AsteroidBehavior : MonoBehaviour {
     {
         if (other.tag == "PlayerBullet" || other.tag == "EnemyBullet")
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
 
             AudioPlayer.astHit.Play();
-            AudioPlayer.lasHit.Play();
+            //AudioPlayer.lasHit.Play();
 
             Instantiate(rockBurst, transform.position, transform.rotation);
 

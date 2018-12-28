@@ -182,7 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prideBullet: 0
+  playerBullet: 1
+  piercing: 0
   speed: 0.82
+  destroyTime: 2
   startRotation: {x: 0, y: 0, z: 0}
   prideColors:
   - {r: 0, g: 0, b: 0, a: 0}

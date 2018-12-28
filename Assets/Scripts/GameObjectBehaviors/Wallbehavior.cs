@@ -8,8 +8,8 @@ public class Wallbehavior : MonoBehaviour {
     {
         if (other.tag == ("PlayerBullet") || other.tag == ("EnemyBullet"))
         {
-                AudioPlayer.lasHit.Play();
-                Destroy(other.gameObject);
+                
+                //Destroy(other.gameObject);
         }
     }
 

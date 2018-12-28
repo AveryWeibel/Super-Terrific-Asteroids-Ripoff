@@ -12,10 +12,10 @@ public class SpawnerWeakpointBehavior : MonoBehaviour {
         if (other.tag == ("PlayerBullet"))
         {
             AudioPlayer.enmHit.Play();
-            AudioPlayer.lasHit.Play();
+            //AudioPlayer.lasHit.Play();
 
             Instantiate(explosion, transform.position, transform.rotation, null);
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
     }

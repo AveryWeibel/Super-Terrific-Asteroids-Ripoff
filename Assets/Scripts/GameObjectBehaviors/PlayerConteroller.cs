@@ -27,9 +27,11 @@ public class PlayerConteroller : MonoBehaviour {
     public ParticleSystem boostJets;
     public ParticleSystem playerHit;
     public ParticleSystem shieldHit;
+    public ParticleSystem tankChargeSys;
 
     public GameObject bullet;
     public GameObject shotgunBullet;
+    public GameObject railgunBullet;
     public GameObject prideBullet;
     public GameObject shield;
     public GameObject shotgunOrigin;
@@ -37,6 +39,8 @@ public class PlayerConteroller : MonoBehaviour {
     public GameObject[] shipModels = new GameObject[3];
     private GameObject[] healthbar = new GameObject[4];
     public GameObject healthbarObj;
+    private GameObject curChargeParticle;
+    public GameObject chargeObj;
 
     public static float cooldownTime = 0;
     public static float powerupWearoffTime = 0;
@@ -59,11 +63,15 @@ public class PlayerConteroller : MonoBehaviour {
     private float highFireMod = .8f;
 
     private float scoutSpeedMod = 1.75f;
-    private float tankSpeedMod = .5f;
+    private float tankSpeedMod = .4f;
 
 
     private float scoutFireMod = 2f;
-    private float tankFireMod = .5f;
+    private float tankFireMod = 8.3f;
+
+    private float tankChargeTime = 0;
+    private bool tankCharged;
+    private bool tankCharging;
 
     public Light playerLight;
 
@@ -134,35 +142,62 @@ public class PlayerConteroller : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= shootTime && !GameManager.onShuttle)
         {
-            AudioPlayer.lasShot.time = 0.105f;
-            AudioPlayer.lasShot.Play();
+
 
             if (curFr == fireRate.low)
             {
-                if (curType == GameManager.shipType.fighter) {
+                if (curType == GameManager.shipType.fighter)
+                {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay * lowFireMod;
                     Instantiate(bullet, transform.position, transform.rotation, null);
                 }
-                else if (curType == GameManager.shipType.scout) {
+                else if (curType == GameManager.shipType.scout)
+                {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay * lowFireMod * scoutFireMod;
 
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 6; i++)
+                    {
                         Instantiate
                             (shotgunBullet, //Object
                             shotgunOrigin.transform.position + new Vector3(Random.Range(-.2f, .2f), 0, Random.Range(.2f, .2f)), //Position
                             Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + Random.Range(-15, 15), transform.rotation.eulerAngles.z)), //Rotation
                             null); //Parent
-                    }                    
+                    }
+                }
+
+                else if (curType == GameManager.shipType.tank)
+                {
+                    if (!tankCharging) {
+                        tankChargeTime = Time.time + shootDelay * lowFireMod * tankFireMod;
+                        tankChargeSys.Play();
+                    }
+                    tankCharging = true;
+
+                    if (Time.time >= tankChargeTime && !tankCharged) {
+                        Debug.Log("Tank Charged");
+                        tankChargeSys.Stop();
+                        tankChargeSys.Clear();
+                        chargeObj.SetActive(true);
+                        tankCharged = true;
+                    }
                 }
             }
             else if (curFr == fireRate.med)
             {
                 if (curType == GameManager.shipType.fighter) {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay;
                     Instantiate(bullet, transform.position, transform.rotation, null);
                 }
                 else if (curType == GameManager.shipType.scout)
                 {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay * scoutFireMod;
                     for (int i = 0; i < 6; i++)
                     {
@@ -173,11 +208,31 @@ public class PlayerConteroller : MonoBehaviour {
                             null); //Parent
                     }
                 }
+                else if (curType == GameManager.shipType.tank)
+                {
+                    if (!tankCharging)
+                    {
+                        tankChargeTime = Time.time + shootDelay * tankFireMod;
+                        tankChargeSys.Play();
+                    }
+                    tankCharging = true;
+
+                    if (Time.time >= tankChargeTime && !tankCharged)
+                    {
+                        Debug.Log("Tank Charged");
+                        tankChargeSys.Stop();
+                        tankChargeSys.Clear();
+                        chargeObj.SetActive(true);
+                        tankCharged = true;
+                    }
+                }
 
             }
             else if (curFr == fireRate.high)
             {
                 if (curType == GameManager.shipType.fighter) {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay;
 
                     Instantiate(bullet, powerupGeo[2].transform.GetChild(0).transform.position, transform.rotation, null);
@@ -186,6 +241,8 @@ public class PlayerConteroller : MonoBehaviour {
                 }
                 else if (curType == GameManager.shipType.scout)
                 {
+                    AudioPlayer.lasShot.time = 0.105f;
+                    AudioPlayer.lasShot.Play();
                     shootTime = Time.time + shootDelay * highFireMod * scoutFireMod;
                     for (int i = 0; i < 6; i++)
                     {
@@ -196,16 +253,50 @@ public class PlayerConteroller : MonoBehaviour {
                             null); //Parent
                     }
                 }
+                else if (curType == GameManager.shipType.tank)
+                {
+                    if (!tankCharging)
+                    {
+                        tankChargeTime = Time.time + shootDelay * highFireMod * tankFireMod;
+                        tankChargeSys.Play();
+                    }
+                    tankCharging = true;
+
+                    if (Time.time >= tankChargeTime && !tankCharged)
+                    {
+                        Debug.Log("Tank Charged");
+                        tankChargeSys.Stop();
+                        tankChargeSys.Clear();
+                        chargeObj.SetActive(true);
+                        tankCharged = true;
+                    }
+                }
             }
             else if (curFr == fireRate.pride) {
+                AudioPlayer.lasShot.time = 0.105f;
+                AudioPlayer.lasShot.Play();
                 shootTime = Time.time + shootDelay * highFireMod;
 
                 Instantiate(prideBullet, transform.position, Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 10, transform.rotation.eulerAngles.z)), null);
                 Instantiate(prideBullet, transform.position, transform.rotation, null);
                 Instantiate(prideBullet, transform.position, Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 10, transform.rotation.eulerAngles.z)), null);
             }
+
+        }//Getkey mouse 0 end
+
+        if (Input.GetKeyUp(KeyCode.Mouse0)) {
+            if (tankCharged) {
+                Instantiate(railgunBullet, transform.position, transform.rotation, null);
+            }
+
+            chargeObj.SetActive(false);
+            tankCharged = false;
+            tankCharging = false;
+            tankChargeSys.Stop();
+            tankChargeSys.Clear();
         }
-    }
+
+    } //Update end
 
     void FixedUpdate()
     {

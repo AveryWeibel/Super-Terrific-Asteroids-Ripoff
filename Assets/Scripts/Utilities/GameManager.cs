@@ -193,8 +193,7 @@ public class GameManager : MonoBehaviour {
     {
         AudioPlayer.menuClick.Play();
 
-        chosenType = shipType.fighter;
-        //chosenType = shipType.tank;
+        chosenType = shipType.tank;
 
         player = Instantiate(playerPrefab,
         levels[curLevel - 1].GetComponent<LevelBehavior>().levelOrigin.transform.position + new Vector3(0, 0, 5),

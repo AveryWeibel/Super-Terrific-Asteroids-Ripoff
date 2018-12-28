@@ -130,12 +130,12 @@ public class EnemyBehavior : MonoBehaviour {
                 hit = true;
                 Instantiate(explosion, transform.position, transform.rotation, null);
 
-                AudioPlayer.lasHit.Play();
+                //AudioPlayer.lasHit.Play();
                 AudioPlayer.enmHit.Play();
                 
 
                 GetComponent<Rigidbody>().AddForceAtPosition(Vector3.one * 100, other.transform.position);
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
                 GameManager.UpdateEntityCount("Enemy", -1);
             }
             if (player.GetComponent<PlayerConteroller>().curType == GameManager.shipType.fighter) {

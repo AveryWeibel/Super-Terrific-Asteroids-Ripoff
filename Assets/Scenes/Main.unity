@@ -2095,7 +2095,7 @@ MonoBehaviour:
 
     Weapon: Blaster
 
-    Health: Low
+    Health: 3
 
 '
   m_isRightToLeft: 0
@@ -2165,7 +2165,7 @@ MonoBehaviour:
   m_margin: {x: 116.53018, y: 0, z: 88.375275, w: -154.76451}
   m_textInfo:
     textComponent: {fileID: 396533879}
-    characterCount: 43
+    characterCount: 41
     spriteCount: 0
     spaceCount: 7
     wordCount: 7
@@ -3431,7 +3431,7 @@ MonoBehaviour:
 
     Weapon: Shotgun
 
-    Health: Low
+    Health: 2
 
 '
   m_isRightToLeft: 0
@@ -3501,7 +3501,7 @@ MonoBehaviour:
   m_margin: {x: 101.90219, y: 0, z: 99.25586, w: -154.76451}
   m_textInfo:
     textComponent: {fileID: 609769422}
-    characterCount: 41
+    characterCount: 39
     spriteCount: 0
     spaceCount: 7
     wordCount: 7
@@ -6178,7 +6178,7 @@ MonoBehaviour:
 
     Weapon: Railgun
 
-    Health: High
+    Health: 4
 
 '
   m_isRightToLeft: 0
@@ -6248,7 +6248,7 @@ MonoBehaviour:
   m_margin: {x: 107.72302, y: 0, z: 98.091644, w: -154.76451}
   m_textInfo:
     textComponent: {fileID: 959864235}
-    characterCount: 42
+    characterCount: 39
     spriteCount: 0
     spaceCount: 7
     wordCount: 7
@@ -7151,7 +7151,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tank (Unimplemented)
+  m_Text: Tank
 --- !u!222 &1075063982
 CanvasRenderer:
   m_ObjectHideFlags: 0
