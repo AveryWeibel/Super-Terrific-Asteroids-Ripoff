@@ -9,6 +9,7 @@ public class markerBehavior : MonoBehaviour {
     public GameObject myLaunchpad;
     public TMP_Text myText;
     public TMP_Text myPrompt;
+    public int thisLevelNum;
     private GameObject rocket;
 
     private void Start()
@@ -31,16 +32,30 @@ public class markerBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (myPrompt.IsActive() == false)
+        if ((GameManager.completedLevels[thisLevelNum] || GameManager.completedLevels[thisLevelNum - 1]))
         {
-            myPrompt.gameObject.SetActive(true);
+            if (myPrompt.IsActive() == false)
+            {
+                myPrompt.SetText("Press Space to Enter");
+                myPrompt.gameObject.SetActive(true);
+            }
+        }
+        else {
+            if (myPrompt.IsActive() == false)
+            {
+                myPrompt.SetText("Complete Previous Level to Enter");
+                myPrompt.gameObject.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.Space) && GameManager.onShuttle) {
+        if (other.tag == "Player" && 
+        Input.GetKeyDown(KeyCode.Space) && 
+        GameManager.onShuttle &&
+        (GameManager.completedLevels[thisLevelNum] || GameManager.completedLevels[thisLevelNum - 1])) {
             GameManager.curLevel = myLevel.GetComponent<LevelBehavior>().thisLevel;
             Debug.Log(GameManager.curLevel);
             other.transform.GetChild(1).gameObject.SetActive(false);

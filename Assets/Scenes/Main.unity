@@ -4971,6 +4971,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 188270435}
   myText: {fileID: 807157097}
   myPrompt: {fileID: 170525870}
+  thisLevelNum: 2
 --- !u!65 &857583141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5605,6 +5606,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 1547930410}
   myText: {fileID: 1300839021}
   myPrompt: {fileID: 203503061}
+  thisLevelNum: 4
 --- !u!65 &913141195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8573,6 +8575,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 2069226184}
   myText: {fileID: 1335741369}
   myPrompt: {fileID: 518016706}
+  thisLevelNum: 3
 --- !u!65 &1410730904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9937,6 +9940,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 1979840399}
   myText: {fileID: 2020278871}
   myPrompt: {fileID: 871831307}
+  thisLevelNum: 1
 --- !u!65 &1729558517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10046,6 +10050,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 571796147}
   myText: {fileID: 924355261}
   myPrompt: {fileID: 525653512}
+  thisLevelNum: 5
 --- !u!65 &1742463519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10155,6 +10160,7 @@ MonoBehaviour:
   myLaunchpad: {fileID: 1590049739}
   myText: {fileID: 909121908}
   myPrompt: {fileID: 922559243}
+  thisLevelNum: 0
 --- !u!65 &1753402667
 BoxCollider:
   m_ObjectHideFlags: 0
