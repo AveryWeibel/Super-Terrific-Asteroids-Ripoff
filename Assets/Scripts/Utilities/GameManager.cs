@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameObject player;
     public GameObject playerPrefab;
+    public static GameObject EndPortal;
 
     public static GameObject markers;
 
@@ -17,13 +18,15 @@ public class GameManager : MonoBehaviour {
 
     public static int currentPrideColor = 0;
 
-    public static bool[] completedLevels = new bool[7];
+    public static bool[] completedLevels = new bool[6];
 
     public static bool onShuttle;
 
+    public static bool allLevelsComplete;
+
     public bool firstLoad = true;
 
-    public static GameObject[] levels = new GameObject[7];
+    public static GameObject[] levels = new GameObject[6];
     public GameObject[] levelPrefabs = new GameObject[levels.Length];
 
     public static GameObject GameOverScreenObj;
@@ -36,6 +39,12 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+
+        EndPortal = GameObject.Find("EndPortal");
+
+        if (EndPortal.activeSelf) {
+            EndPortal.SetActive(false);
+        }
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) { //Makes sure we are in the main scene before proceeding
 
@@ -69,7 +78,7 @@ public class GameManager : MonoBehaviour {
         selectShip();
     }
 
-    //Handles game ending
+    //Handles player death
     public static void GameOver () {
         GameOverScreenObj.SetActive(true); //Enables death menu
         player.SetActive(false); //Disables player to prevent control
@@ -80,6 +89,19 @@ public class GameManager : MonoBehaviour {
     {
         completedLevels[curLevel - 1] = true;
         levels[curLevel - 1].GetComponent<LevelBehavior>().complete = true;
+
+        Debug.Log("Completed level: " + (curLevel - 1));
+
+        for (int i = 0; i < levels.Length; i++) {
+            if (!completedLevels[i])
+            {
+                return;
+            }
+        }
+
+        Debug.Log("All levels complete");
+        allLevelsComplete = true;
+        EndPortal.SetActive(true);
     }
 
     //Resets game at start of current level
