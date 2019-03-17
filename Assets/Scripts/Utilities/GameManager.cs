@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour {
 
         EndPortal = GameObject.Find("EndPortal");
 
-        if (EndPortal.activeSelf) {
+        if (EndPortal != null && EndPortal.activeSelf) {
             EndPortal.SetActive(false);
         }
 
