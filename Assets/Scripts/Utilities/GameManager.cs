@@ -39,11 +39,14 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
+            EndPortal = GameObject.Find("EndPortal");
 
-        EndPortal = GameObject.Find("EndPortal");
 
-        if (EndPortal.activeSelf) {
-            EndPortal.SetActive(false);
+            if (EndPortal.activeSelf) {
+                EndPortal.SetActive(false);
+            }
+
         }
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) { //Makes sure we are in the main scene before proceeding

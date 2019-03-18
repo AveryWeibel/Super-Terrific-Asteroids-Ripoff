@@ -116,8 +116,8 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     private void FireShot() {
-        if (inFiringDistance && this.gameObject.activeSelf && this.gameObject.transform.parent.gameObject.activeSelf &&
-            !GameManager.onShuttle) {
+        if (player.gameObject != null && inFiringDistance && this.gameObject.activeSelf && this.gameObject.transform.parent.gameObject.activeSelf &&
+            !GameManager.onShuttle && player.activeInHierarchy) {
             Instantiate(bullet, transform.position, transform.rotation, null);
         }
     }
