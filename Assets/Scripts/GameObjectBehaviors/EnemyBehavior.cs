@@ -40,7 +40,7 @@ public class EnemyBehavior : MonoBehaviour {
         thisLight = transform.GetChild(0).gameObject;
 
         if (turret) {
-            firingSpeed -= 3;
+            firingSpeed -= 2.5f;
             health = 1;
         }
 
@@ -116,8 +116,8 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     private void FireShot() {
-        if (player.gameObject != null && inFiringDistance && this.gameObject.activeSelf && this.gameObject.transform.parent.gameObject.activeSelf &&
-            !GameManager.onShuttle && player.activeInHierarchy) {
+        if (inFiringDistance && this.gameObject.activeSelf && this.gameObject.transform.parent.gameObject.activeSelf &&
+            !GameManager.onShuttle && player != null && player.activeSelf) {
             Instantiate(bullet, transform.position, transform.rotation, null);
         }
     }

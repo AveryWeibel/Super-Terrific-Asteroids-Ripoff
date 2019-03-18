@@ -43,10 +43,8 @@ public class GameManager : MonoBehaviour {
             EndPortal = GameObject.Find("EndPortal");
 
 
-            if (EndPortal.activeSelf) {
-                EndPortal.SetActive(false);
-            }
-
+        if (EndPortal != null && EndPortal.activeSelf) {
+            EndPortal.SetActive(false);
         }
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) { //Makes sure we are in the main scene before proceeding
