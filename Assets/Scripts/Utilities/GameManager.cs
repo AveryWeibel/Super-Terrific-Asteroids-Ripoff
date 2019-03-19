@@ -39,44 +39,49 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1) {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
             EndPortal = GameObject.Find("EndPortal");
 
 
-        if (EndPortal != null && EndPortal.activeSelf) {
-            EndPortal.SetActive(false);
-        }
-
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1)) { //Makes sure we are in the main scene before proceeding
-
-            markers = GameObject.Find("Markers"); //Gets the markers gameObject, because it is active at launch, turn it off
-            if (markers != null && markers.activeSelf)
+            if (EndPortal != null && EndPortal.activeSelf)
             {
-                markers.SetActive(false);
+                EndPortal.SetActive(false);
             }
 
-            // Gets the player object. Must be last child of this object.
-            //player = transform.GetChild(transform.childCount - 1).gameObject;
-            //player.transform.parent = null;
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+            { //Makes sure we are in the main scene before proceeding
 
-            //Adding Levels to the levels[] array
-            for (int i = 0; i < transform.childCount; i++) {
-                levels[i] = transform.GetChild(i).gameObject;
+                markers = GameObject.Find("Markers"); //Gets the markers gameObject, because it is active at launch, turn it off
+                if (markers != null && markers.activeSelf)
+                {
+                    markers.SetActive(false);
+                }
+
+                // Gets the player object. Must be last child of this object.
+                //player = transform.GetChild(transform.childCount - 1).gameObject;
+                //player.transform.parent = null;
+
+                //Adding Levels to the levels[] array
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    levels[i] = transform.GetChild(i).gameObject;
+                }
+
+                //Gets and disables Canvas text objects
+                GameOverScreenObj = GameObject.Find("GameOverScreen");
+                LevelCompleteScreenObj = GameObject.Find("LevelCompleteScreen");
+                ShipSelectScreenObj = GameObject.Find("ShipSelectScreen");
+                PauseMenuObj = GameObject.Find("PauseMenuScreen");
+                GameOverScreenObj.SetActive(false);
+                LevelCompleteScreenObj.SetActive(false);
+                ShipSelectScreenObj.SetActive(false);
+                PauseMenuObj.SetActive(false);
             }
 
-            //Gets and disables Canvas text objects
-            GameOverScreenObj = GameObject.Find("GameOverScreen");
-            LevelCompleteScreenObj = GameObject.Find("LevelCompleteScreen");
-            ShipSelectScreenObj = GameObject.Find("ShipSelectScreen");
-            PauseMenuObj = GameObject.Find("PauseMenuScreen");
-            GameOverScreenObj.SetActive(false);
-            LevelCompleteScreenObj.SetActive(false);
-            ShipSelectScreenObj.SetActive(false);
-            PauseMenuObj.SetActive(false);
+            //Handles ship select
+            selectShip();
         }
-
-        //Handles ship select
-        selectShip();
     }
 
     //Handles player death
@@ -146,6 +151,7 @@ public class GameManager : MonoBehaviour {
             if (type == "Enemy")
             {
                 enemiesInScene += increment;
+                Debug.Log("Enemies: " + enemiesInScene);
             }
 
             if (type == "Spawner")

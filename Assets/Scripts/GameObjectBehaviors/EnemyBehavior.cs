@@ -136,7 +136,7 @@ public class EnemyBehavior : MonoBehaviour {
 
                 GetComponent<Rigidbody>().AddForceAtPosition(Vector3.one * 100, other.transform.position);
                 //Destroy(other.gameObject);
-                GameManager.UpdateEntityCount("Enemy", -1);
+                
             }
             if (player.GetComponent<PlayerConteroller>().curType == GameManager.shipType.fighter) {
                 UpdateHealth(-1);
@@ -157,9 +157,10 @@ public class EnemyBehavior : MonoBehaviour {
 
         health += inc;
 
-        if (health == 0)
+        if (health <= 0)
         {
             Instantiate(debris, transform.position, transform.rotation, null);
+            GameManager.UpdateEntityCount("Enemy", -1);
             Destroy(this.gameObject);
         }
         hit = false;

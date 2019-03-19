@@ -559,55 +559,6 @@ public class PlayerConteroller : MonoBehaviour {
             health += inc;
         }
 
-
-
-
-        /*if (inc < 0) { 
-            invulnerable = true;
-            if (health == maxHealth - (maxHealth - 1)) {
-                healthbar[health].transform.GetChild(0).gameObject.SetActive(false);
-            }
-            else {
-                healthbar[health - 1].transform.GetChild(0).gameObject.SetActive(false);
-            }
-        }
-
-        else if (inc > 0 && health != maxHealth)
-        {
-            if (health == maxHealth - 1)
-            {
-                healthbar[health].transform.GetChild(0).gameObject.SetActive(true);
-            }
-            else
-            {
-                healthbar[health + 1].transform.GetChild(0).gameObject.SetActive(true);
-            }
-        } */
-
-
-
-        /*for (int i = inc >= 0 ? healthbar.Length - 1 : 0; ; i -= inc)
-        {
-            if (inc != 0)
-            {
-                if (healthbar[i].activeInHierarchy && inc < 0)
-                {
-                    invulnerable = true;
-                    healthbar[i].SetActive(false);
-                    break;
-                }
-
-                if (!healthbar[i].activeInHierarchy && inc > 0)
-                {
-                    healthbar[i].SetActive(true);
-                    break;
-                }
-            }
-            else {
-                break;
-            }
-        }*/
-
         if (health <= 0)
         {
             Destroy(healthbarObj);
