@@ -67,7 +67,7 @@ public class PlayerConteroller : MonoBehaviour {
 
 
     private float scoutFireMod = 2f;
-    private float tankFireMod = 8.3f;
+    private float tankFireMod = 7.3f;
 
     private float tankChargeTime = 0;
     private bool tankCharged;
